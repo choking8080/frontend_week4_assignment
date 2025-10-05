@@ -1,14 +1,24 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import App from "./App";
+import RecipesPage from "./pages/RecipesPage";
+import RecipeDetailPage from "./pages/RecipeDetailPage";
+import "./index.css";
 
-const rootElement = document.getElementById('root');
-if (rootElement === null) {
-  throw new Error('Root element not found');
-}
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      { index: true, element: <RecipesPage /> },
+      { path: "recipes/:id", element: <RecipeDetailPage /> },
+    ],
+  },
+]);
 
-createRoot(rootElement).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <RouterProvider router={router} />
+  </React.StrictMode>
 );

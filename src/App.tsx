@@ -1,16 +1,14 @@
-import { useState } from 'react';
+import { Link, Outlet } from "react-router-dom";
 
-const App = () => {
-  const [count, setCount] = useState(0);
-
+export default function App() {
   return (
-    <div>
-      <p>Hello World!</p>
-      <button onClick={() => setCount((count) => count + 1)}>
-        Count is {count}
-      </button>
+    <div style={{ maxWidth: 1100, margin: "0 auto", padding: "24px" }}>
+      <header style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+          <h1 style={{ margin: 0 }}>🍳 Recipes</h1>
+        </Link>
+      </header>
+      <Outlet />
     </div>
   );
-};
-
-export default App;
+}
